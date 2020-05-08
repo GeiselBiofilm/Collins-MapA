@@ -1,16 +1,26 @@
 import re
+import sys
 
-def main():
+def main(TreeFile, No_LapDGFile, LapACountFile, OutFile):
+
+	"""
+	Creates color strip dataset for iToL given a treefile to annotate and files containing information about the presence/absence of LapD and 
+	LapG and the number of LapA-like proteins encoded. The input files can contain taxa not included in the tree.
+	TreeFile: a treefile in Newick format
+	No_LapDGFile: .csv or .txt with one species per row that does not encode LapD and LapG
+	LapACountFile: .csv with two columns: Species, Number of LapA-like proteins encoded
+	OutFile: name of file to output .txt format dataset for iToL annotation
+	Example usage:	python3 create_itol_color_dataset my_tree.tre Pseudomonas_no_lapDG.csv Pseudomonas_LapA_counts.csv tree_lap_status.txt
+	"""
 	
-	with open("new_mlst_ML_tree.tre", "r") as treefile:
+	with open(TreeFile, "r") as treefile:
 		
 		leaf_dict = dict.fromkeys(re.findall(r'([^(),;\s]+)', treefile.read())) 
-		# find all instances of stuff not containing (due to '^') (),; or whitespace (\s)
 
 
 	treefile.close()
 
-	with open("Pseudomonas_no_lapDG.csv", 'r') as laplessfile:
+	with open(No_LapDGFile, 'r') as laplessfile:
 		nolapDG_pseudos = []
 		for line in laplessfile.readlines():
 			if "Candidatus" in line:
@@ -20,7 +30,7 @@ def main():
 
 	laplessfile.close()
 
-	with open("Pseudomonas_LapA_counts.csv", 'r') as LapAcountsfile:
+	with open(LapACountFile, 'r') as LapAcountsfile:
 
 		LapAorgs = []
 		for line in LapAcountsfile.readlines():
@@ -50,14 +60,13 @@ def main():
 				leaf_dict[Species] = i[1]
 			else:
 				continue
-				#print("%s is the query and %s is the dict entry" %(i, leaf_dict[Species]))
 		else:
-			print(Species)
-	leaf_dict["Azotobacter_vinelandii"] = "No_LapD/G_found"
+			print("Taxon %s was not found in the tree file." % Species)
+		leaf_dict["Cellvibrio_japonicus"] = "Zero"
 
 
-	colour_dict = {"No_LapD/G_found": "rgb(0,0,0)", "Zero": "rgb(255,255,255)", "One": "rgb(254,178,76)", "Multiple": "rgb(240,59,32)"}
-	with open("tree_lap_status.txt", 'w+') as outfile:
+	colour_dict = {"No_LapD/G_found": "rgb(0,0,0)", "Zero_adhesins": "rgb(255,255,255)", "One_adhesin": "rgb(254,178,76)", "Multiple_adhesin": "rgb(240,59,32)"}
+	with open(OutFile, 'w+') as outfile:
 		outfile.write("Species\tColour\tLap_status\n")
 		for k, v in leaf_dict.items():
 			outfile.write("%s\t%s\t%s\n" %(k, colour_dict[v.strip('"')], v))
@@ -65,4 +74,4 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+	main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
