@@ -3,6 +3,20 @@ import os
 import sys
 
 def main(inDir, outFile):
+	"""
+	Reads in clustal format alignments produced by run_muscle_on_dir.py. Creates .txt and .pdf files with 
+	pairwise alignments of all LapA-like proteins with LapA and MapA. Also writes a contents table with 
+	all species present in file at top of file. Each alignment has a title of the format:
+
+	Pseudomonas alcaligenes adhesin 1 aligned with Pf0-1 LapA: 21.0 % identity; 57.4 % similarity
+
+	inDir: Directory containing clustal format pairwise alignments
+	outFile: Filename for output files. Don't add an extension as this script will output a .pdf and a .txt
+	with whatever filename you provide.
+
+	Example usage: python3 write_clws_to_file.py Alignments Output/LapA-like_protein_alignments
+	"""
+
 	all_species = []
 	out = ""
 	files = os.listdir(inDir)
@@ -47,12 +61,19 @@ def main(inDir, outFile):
 	contents = "\n".join(all_species)
 	out = "Species present in this file:\n\n" + contents + '\n\n\nAlignments:\n\n' + out
 
+	txtoutFile = outFile + ".txt"
+	pdfoutFile = outFile + ".pdf"
+
+	with open(txtoutFile, "w+") as outf:
+		outf.write(out)
+	outf.close()
+
 	pdf = FPDF()
 	pdf.add_page()
 	pdf.set_xy(0, 0)
 	pdf.set_font('courier', 'B', 9.5)
 	pdf.multi_cell(h=5.0, w=0, txt=out)
-	pdf.output(outFile, 'F')
+	pdf.output(pdfoutFile, 'F')
 
 if __name__ == '__main__':
 	main(sys.argv[1], sys.argv[2])
