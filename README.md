@@ -14,4 +14,4 @@ The ['Plotting'](Plotting) directory contains all code used to generate figures 
 
 The ['Supplemental_File_Alignments']('Supplemental_File_Alignments') directory contains supplemental files referred to in the main text of the mauscript.
 
-In the relevant directories, the data that were used for our analyses are provided in the Data folder. These include the list of LapD and LapG encoding organisms, the list of bacterial genomes present in the GenBank database when our analysis was conducted, and a Newick format encoding of the tree presented in Figure 11 of the manuscript.
+In the relevant directories, the data that were used for our analyses are provided in the Data folder. These include the list of LapD and LapG encoding organisms, the list of bacterial genomes present in the GenBank database when our analysis was conducted, and a Newick format encoding of the tree presented in Figure 11 of the manuscript. All other input files can be generated using the scripts provided here.
