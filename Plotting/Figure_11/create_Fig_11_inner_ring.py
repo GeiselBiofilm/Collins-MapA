@@ -10,7 +10,7 @@ def main(TreeFile, No_LapDGFile, LapACountFile, OutFile):
 	No_LapDGFile: .csv or .txt with one species per row that does not encode LapD and LapG
 	LapACountFile: .csv with two columns: Species, Number of LapA-like proteins encoded
 	OutFile: name of file to output .txt format dataset for iToL annotation
-	Example usage:	python3 create_itol_color_dataset Data/my_tree.tre Data/Pseudomonas_no_lapDG.txt Data/Pseudomonas_LapA_counts.csv Output/tree_lap_status.txt
+	Example usage:	python3 create_Fig_11_inner_ring.py Data/my_tree.tre Data/Pseudomonas_no_lapDG.txt Data/Pseudomonas_LapA_counts.csv Output/tree_lap_status.txt
 	"""
 	
 	with open(TreeFile, "r") as treefile:
