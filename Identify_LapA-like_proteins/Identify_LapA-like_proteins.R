@@ -144,6 +144,12 @@ lapGD.organisms<-unique(intersect(pSUM.lapG$ORG,pSUM.lapD$ORG)) #select organism
 #######STEP 3 - Read Downloaded Genome list file#######
 all.genomes<-read.csv("Data/ALL_genomes_proks.csv", stringsAsFactors = FALSE, header=TRUE) #file contains all bacterial genomes as of 4/13/2020 downloaded from https://www.ncbi.nlm.nih.gov/assembly?term=%28%22Bacteria%22%5BOrganism%5D%29%20AND%20%28bacteria%5Bfilter%5D%20AND%20%28latest%5Bfilter%5D%20OR%20%22latest%20refseq%22%5Bfilter%5D%29%20AND%20%28all%5Bfilter%5D%20NOT%20%22derived%20from%20surveillance%20project%22%5Bfilter%5D%20AND%20all%5Bfilter%5D%20NOT%20anomalous%5Bfilter%5D%29%29&cmd=DetailsSearch
 
+#generate file with list of Pseudomonas genomes in dataset
+
+all.pseudomonas.genomes <- all.genomes$Organism.Name[ grepl( "Pseudomonas" , all.genomes$Organism.Name )]
+
+write(all.pseudomonas.genomes, "Output/all_pseudomonas_genomes.txt",)
+
 #############################################################
 
 #######STEP 4 #######
@@ -249,5 +255,5 @@ row.names(substrates.unique) <- seq(length(row.names(substrates.unique)))
 protein.count <- data.frame(table(unlist(substrates.unique$organism)))
 non.lapA.but.lapDG.orgs <- data.frame(table(unlist(non.substrates.unique$organism)))
 
-write.csv(substrates.unique, "Output/All_lapg_targets.csv", row.names = FALSE)
-write.csv(no.substrates2, "Output/all_non_lapg_targets.csv", row.names = FALSE)
+write.csv(substrates.unique[,c(1,4,5)], "Output/All_lapg_targets.csv", row.names = FALSE)
+write.csv(no.substrates2[,c(1,4,5)], "Output/all_non_lapg_targets.csv", row.names = FALSE)
