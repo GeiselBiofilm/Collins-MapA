@@ -4,6 +4,8 @@ This project investigates the phylogenetic distribution of the LapA-like adhesin
 
 > Collins AJ, Pastora AB, Smith TJ, Dahlstrom KM and O'Toole, GA. 2020. MapA, a second large RTX adhesin, contributes to biofilm formation by Pseudomonas fluorescens. bioRxiv. https://doi.org/10.1101/2020.05.11.089839
 
+Included in this repository is all code and raw data that were used to identify the LapA-like proteins in bacterial genomes present in the RefSeq database. In addition, a .csv file containing all ideintified LapA-like proteins is included in the root directory above [and here.](https://github.com/GeiselBiofilm/Collins-MapA/blob/master/All_lapg_targets.csv)
+
 ## Repository structure
 
 The ['Identify_LapA-like_proteins'](Identify_LapA-like_proteins) directory contains R code to identify organisms that encode LapD, LapG, and LapA homologs, as well as example input files that were used in the published analysis.
