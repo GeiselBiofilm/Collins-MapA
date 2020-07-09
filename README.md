@@ -2,7 +2,9 @@
 
 This project investigates the phylogenetic distribution of the LapA-like adhesins (which include MapA) and the LapD and LapG regulatory proteins. It uses annotations from the NCBI conserved domain database (CDD) to find LapD and LapG homologs and then uses characteristics common to characterized LapA homologs to identify LapA-like proteins in organisms that encode LapD and LapG. For more information see the corresponding study:
 
-> Collins AJ, Pastora AB, Smith TJ, Dahlstrom KM and O'Toole, GA. 2020. MapA, a second large RTX adhesin, contributes to biofilm formation by Pseudomonas fluorescens. bioRxiv. https://doi.org/10.1101/2020.05.11.089839
+> MapA, a second large RTX adhesin conserved across the Pseudomonads, contributes to biofilm formation by Pseudomonas fluorescens
+Alan J. Collins, Alexander B. Pastora, T. Jarrod Smith, George A. O'Toole
+Journal of Bacteriology Jul 2020, JB.00277-20; DOI: 10.1128/JB.00277-20
 
 Included in this repository is all code and raw data that were used to identify the LapA-like proteins in bacterial genomes present in the RefSeq database. In addition, a .csv file containing all ideintified LapA-like proteins is included in the root directory above [and here.](https://github.com/GeiselBiofilm/Collins-MapA/blob/master/All_lapg_targets.csv)
 
